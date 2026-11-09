@@ -1,0 +1,13 @@
+# Command snippets for Ctrl+G (fzf). One command per line, "  # description" after it.
+# Machine-specific ones go in local/snippets.
+# examples only
+dupes SRC REF   # czkawka: duplicates in SRC that also exist in REF, dry run, report in ~/dupes-report.txt (REF is never touched)
+czkawka_cli dup -d SRC -r REF -D aeo -f ~/dupes-report.txt   # czkawka: DELETE duplicates in SRC, keep REF (reference) untouched
+sudo docker compose logs -f --tail 50   # follow logs of compose app in cwd
+sudo smartctl -a /dev/disk/by-id/   # disk health
+rsync -aHAX --info=progress2 SRC/ DEST/   # copy everything (perms, times, links, hardlinks, ACLs, xattrs); SRC/ = contents
+rsync -aHAXn --itemize-changes SRC/ DEST/ | less   # dry run: show what rsync would copy/change
+rsync -aHAXc --info=progress2 SRC/ DEST/   # copy and compare by checksum (slow; verifies content)
+rsync -aHAXn --delete --itemize-changes SRC/ DEST/ | less   # dry run of exact mirror: also lists DEST files to delete
+watch -n 2 'ls -l /proc/$(pgrep -o rsync)/fd | grep -o "/mnt/files.*"'   # rsync: which file right now (adjust /mnt/files to source)
+nasm -f elf64 SOURCE.asm -o SOURCE.o && ld SOURCE.o -o SOURCE && ./SOURCE; echo $? # asm x86 compiling

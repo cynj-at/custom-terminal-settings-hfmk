@@ -1,0 +1,6 @@
+local/arch*
+local/secrets.zsh
+local/local.zsh*
+sync.sh
+sync-dry.sh
+rsync-exclude.txt
